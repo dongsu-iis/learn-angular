@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'demo1';
+  url = 'http://blog.miniasp.com/';
+  imgUrl = '/assets/images/logo.png';
+  constructor() {
+    setTimeout(() => {
+      this.title = 'The Will Will Web';
+    }, 2000);
+  }
 }
