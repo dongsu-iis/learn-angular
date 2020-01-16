@@ -25,8 +25,8 @@
   <div class="title-wrapper">
     <div class="container">
 
-      <img (click)="changeTitle($event.altKey)" [title]="title" [src]="imgUrl" [attr.data-title]="title" class="pull-left logo"
-        alt="The Will Will Web">
+      <img (click)="changeTitle($event.altKey)" [title]="title" [src]="imgUrl" [attr.data-title]="title"
+        class="pull-left logo" alt="The Will Will Web">
 
       <div class="pull-left">
         <h1><a [href]="url">{{title}}</a></h1>
@@ -160,9 +160,10 @@
         <div class="widget search">
           <div class="widget-content">
             <div id="searchbox">
-              <input type="text" (input)="getTextCount($event.target.value)" (keyup.escape)="inputReset($event.target)"  placeholder="請輸入搜尋關鍵字" accesskey="s">
+              <input type="text" [(ngModel)]="keyword" (keyup.escape)="inputReset()" placeholder="請輸入搜尋關鍵字"
+                accesskey="s">
               <br>
-               TextCount : {{searchTextCount}}
+              keyword : {{keyword}} count : {{keyword.length}}
               <input type="button" value="搜尋" id="searchbutton">
             </div>
           </div>

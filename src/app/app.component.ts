@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'demo1';
   url = 'http://blog.miniasp.com/';
   imgUrl = '/assets/images/logo.png';
-  searchTextCount = 0;
+  keyword = '';
 
   constructor() {
   }
@@ -20,13 +20,8 @@ export class AppComponent {
     }
   }
 
-  getTextCount(searchText: string) {
-    this.searchTextCount = searchText.length;
-  }
-
-  inputReset(input: HTMLInputElement) {
-    input.value = '';
-    this.searchTextCount = 0;
+  inputReset() {
+    this.keyword = '';
   }
 
 }
