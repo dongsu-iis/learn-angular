@@ -17,10 +17,9 @@ UdemyのAngular学習コースで習得した内容を整理するためのメ�
 - テストビリティ
   - Unit Test (Karma)
   - E2E Test (Protractor)
-
-### [TypeScript](https://www.typescriptlang.org/index.html)
-
-オブジェクト指向言語(Java, C#)できる人と親和性が高い。
+- [TypeScript](https://www.typescriptlang.org/index.html)
+  - オブジェクト指向言語(Java, C#)できる人と親和性が高い
+  - TypeScriptはあくまでサポート、JavaScriptできるに越したことない
 
 ## 環境構築
 
@@ -46,7 +45,7 @@ npm i -g @angular/cli
 
 - Angular Extension Pack
 
-## Hello World
+## 初級
 
 ### プロジェクト作成
 
@@ -104,3 +103,81 @@ demo1
 ├── tsconfig.json
 ├── tsconfig.spec.json
 └── tslint.json
+
+### ModuleとComponent
+
+![ModuleComponent](2020-01-17-18-09-13.png)
+
+### 基本コマンド
+
+Component生成
+
+```bash
+ng generate component page1
+
+## 簡略版
+ng g c page2
+```
+
+発行
+
+```bash
+ng build
+
+## 製品版(JavaScriptが圧縮される)
+ng build --prod
+```
+
+[Angularのバージョンアップ](https://update.angular.io/)
+
+```bash
+## local angular
+ng update
+
+## global angular cli update
+npm list -g --depth=0
+npm outdated -g
+npm i -g @angular/cli
+```
+
+## 基本
+
+### Interprolation
+
+{{property}}
+
+```html
+<p>{{title}}</p>
+```
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'demo1';
+
+  constructor() {
+  }
+
+}
+```
+
+### Property Binding
+
+[property]='statement'
+
+```html
+<a [href]="url" [attr.data-title]="title">{{title}}</a>
+```
+
+```ts
+export class AppComponent {
+  title = 'demo1';
+  url = 'http://dongsu.dev/';
+}
+```
