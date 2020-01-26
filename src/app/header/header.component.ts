@@ -9,16 +9,24 @@ export class HeaderComponent implements OnInit {
   title = 'demo1';
   url = 'http://blog.miniasp.com/';
   imgUrl = '/assets/images/logo.png';
+  counter = 0;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+
+  getStyle() {
+    return { 'font-size': (12 + this.counter) + 'px' };
+  }
+
   changeTitle(altKey: boolean) {
     if (altKey) {
       this.title = 'The Will Will Web';
     }
+
+    this.counter++;
   }
 
 }
