@@ -21,7 +21,10 @@ export class AppComponent {
     {
       "id": 1,
       "href": "http://blog.miniasp.com/post/2016/04/30/Visual-Studio-Code-from-Command-Prompt-notes.aspx",
-      "title": "從命令提示字元中開啟 Visual Studio Code 如何避免顯示惱人的偵錯訊息",
+      "subject": {
+        "title": "從命令提示字元中開啟 Visual Studio Code 如何避免顯示惱人的偵錯訊息",
+        "subtitle": "test"
+      },
       "date": "2016/04/30 18:05",
       "author": "Will 保哥",
       "category": "Visual Studio",
@@ -31,7 +34,6 @@ export class AppComponent {
     {
       "id": 2,
       "href": "http://blog.miniasp.com/post/2016/03/22/Does-Certification-Exam-Useful.aspx",
-      "title": "考證照真的沒用嗎？一個從業 20 年的 IT 主管告訴你他怎麼看！",
       "date": "2016/03/22 19:28",
       "author": "Will 保哥",
       "category": "心得分享",
@@ -41,7 +43,10 @@ export class AppComponent {
     {
       "id": 3,
       "href": "http://blog.miniasp.com/post/2016/03/14/ASPNET-MVC-Developer-Note-Part-28-Understanding-ModelState.aspx",
-      "title": "ASP.NET MVC 開發心得分享 (28)：深入瞭解 ModelState 內部細節",
+      "subject": {
+        "title": "ASP.NET MVC 開發心得分享 (28)：深入瞭解 ModelState 內部細節",
+        "subtitle": ""
+      },
       "date": "2016/03/14 12:14",
       "author": "Will 保哥",
       "category": "ASP.NET MVC",
@@ -51,7 +56,10 @@ export class AppComponent {
     {
       "id": 4,
       "href": "http://blog.miniasp.com/post/2016/03/06/ASPNET-MVC-5-View-Roslyn-problem-workaround.aspx",
-      "title": "ASP.NET MVC 5.2.3 的 View 使用 Roslyn (C# 6.0) 編譯時的問題",
+      "subject": {
+        "title": "ASP.NET MVC 5.2.3 的 View 使用 Roslyn (C# 6.0) 編譯時的問題",
+        "subtitle": ""
+      },
       "date": "2016/03/06 17:11",
       "author": "Will 保哥",
       "category": "ASP.NET MVC",
@@ -61,7 +69,10 @@ export class AppComponent {
     {
       "id": 5,
       "href": "http://blog.miniasp.com/post/2016/02/19/Useful-tool-PackageManagement-OneGet.aspx",
-      "title": "介紹好用工具：Win 10 內建的 PackageManagement 套件管理器 (OneGet)",
+      "subject": {
+        "title": "介紹好用工具：Win 10 內建的 PackageManagement 套件管理器 (OneGet)",
+        "subtitle": ""
+      },
       "date": "2016/02/19 11:55",
       "author": "Will 保哥",
       "category": "介紹好用工具",
@@ -71,13 +82,16 @@ export class AppComponent {
     {
       "id": 6,
       "href": "http://blog.miniasp.com/post/2016/02/02/JavaScript-novice-advice-and-learning-resources.aspx",
-      "title": "我要成為前端工程師！給 JavaScript 新手的建議與學習資源整理",
+      "subject": {
+        "title": "我要成為前端工程師！給 JavaScript 新手的建議與學習資源整理",
+        "subtitle": ""
+      },
       "date": "2016/02/02 17:48",
       "author": "Will 保哥",
       "category": "前端工程研究",
       "category-link": "http://blog.miniasp.com/category/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E7%A0%94%E7%A9%B6.aspx",
       "summary": "<p>今年有越來越多企業開始跟我們接洽企業內訓的事，想請我幫他們培訓前端工程師，但你知道一個好的前端工程師絕對不是兩三個月可以養成的，需要多年的努力與磨練才會有點成績。而這幾年可謂<strong>前端正夯</strong>，有為數不少的人開始大規模的往前端開發移動，而我被問到最多的問題就是「請問 JavaScript 要怎麼學？」或「請問 JavaScript 該怎樣入門？」諸如此類的問題。大家都知道，對於一門程式技術來說，「會寫」與「會教」是兩個截然不同的領域，會寫 JavaScript 的人到處都是，但是會教的人就相對少很多了。我這幾年教授 JavaScript 開發實戰課程已經超過 15 梯次，在將近 500 位學員裡面，我所看到的大部分學員都是對 JavaScript 不勝理解，普遍處於一種一知半解、模糊不清的狀態。另一方面，我在公司內部也帶過不少工程師，總是有人會想學習 JavaScript 但不知道如何入門的情況，這讓我陷入深思，該如何幫助一個人學習 JavaScript 從入門到精通呢？本篇文章將說說我個人的一些想法與建議。</p><p>... <a class='more' href='http://blog.miniasp.com/post/2016/02/02/JavaScript-novice-advice-and-learning-resources.aspx#continue'>繼續閱讀</a>...</p>"
     }
-];
+  ];
 
 }
