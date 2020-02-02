@@ -7,6 +7,7 @@ import { Component, OnInit, IterableDiffers } from '@angular/core';
 })
 export class ArticleListComponent implements OnInit {
 
+  counter = 0;
   data: Array<any>;
 
   constructor() { }
@@ -27,6 +28,10 @@ export class ArticleListComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(()=>{
+      this.counter++;
+    },2000)
+
     this.data = [
       {
         "id": 1,
