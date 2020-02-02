@@ -1,7 +1,8 @@
 <header class="post-header">
   <h2 class="post-title">
-    <a [href]="item.href">{{item.subject?.title|lowercase|slice:-20}}</a>
-    <small>{{item.subject?.subtitle}}</small>
+    <a *ngIf="!isEdit" [href]="item.href">{{item.title}}</a>
+    <input *ngIf="isEdit" type="text" size="70" [value]="newTitle" (keyup.enter)="doEdit($event.target.value)"
+      (keyup.escape)="$event.target.value = item.title; isEdit=false">
   </h2>
   <div class="post-info clearfix">
     <span class="post-date"><i class="glyphicon glyphicon-calendar"></i>{{item.date|date:'yyyy/MM/dd'}}</span>
@@ -11,6 +12,8 @@
         [href]="item['category-link']">{{item.category}}</a></span>
     <span>
       <button (click)="deleteArticle()">Delete</button>
+      <button *ngIf="!isEdit" (click)="isEdit=true">Edit</button>
+      <button *ngIf="isEdit" (click)="isEdit=false">Cancel Edit</button>
     </span>
   </div>
 </header>
