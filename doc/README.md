@@ -60,6 +60,7 @@ npm start
 
 ### プロジェクト構造
 
+```
 demo1
 ├── angular.json (Angular設定ファイル)
 ├── browserslist
@@ -103,6 +104,7 @@ demo1
 ├── tsconfig.json
 ├── tsconfig.spec.json
 └── tslint.json
+```
 
 ### ModuleとComponent
 
