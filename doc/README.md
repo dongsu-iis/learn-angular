@@ -142,44 +142,93 @@ npm outdated -g
 npm i -g @angular/cli
 ```
 
-## 基本
+## Data Binding
 
 ### Interprolation
 
-{{property}}
+`{{property}}`
 
-```html
-<p>{{title}}</p>
-```
+- html
 
-```ts
-import { Component } from '@angular/core';
+  ```html
+  <p>{{title}}</p>
+  ```
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'demo1';
+- ts
 
-  constructor() {
+  ```ts
+  export class AppComponent {
+    title = 'demo1';
   }
-
-}
-```
+  ```
 
 ### Property Binding
 
-[property]='statement'
+`[property]="statement"`
 
-```html
-<a [href]="url" [attr.data-title]="title">{{title}}</a>
-```
+- html
 
-```ts
-export class AppComponent {
-  title = 'demo1';
-  url = 'http://dongsu.dev/';
-}
-```
+  ```html
+  <a [href]="url" [attr.data-title]="title">{{title}}</a>
+  ```
+
+- ts
+
+  ```ts
+  export class AppComponent {
+    title = 'demo1';
+    url = 'http://dongsu.dev/';
+  }
+  ```
+
+### Event Binding
+
+`(click)="method()"`
+
+- html
+
+  ```html
+  <button (click)="doCancel()">Cancel Edit</button>
+  ```
+
+- ts
+
+  ```ts
+  export class AppComponent {
+    doCancel() {
+      // Dosomething
+      this.isEdit = false;
+    }
+  }
+  ```
+
+### Two-way Binding
+
+`[(ngModel)]="Property"`
+
+- html
+
+  ```html
+   <input type="text" size="70" [(ngModel)]="item.title" >
+  ```
+
+- ts(app.module.ts)
+
+  ```ts
+  import { FormsModule } from '@angular/forms';
+
+  @NgModule({
+  imports: [
+    CommonModule,
+    FormsModule
+  ]
+  })
+  ```
+
+- ts(app.component.ts)
+
+  ```ts
+  export class AppComponent {
+    item;
+  }
+  ```
