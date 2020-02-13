@@ -2,7 +2,9 @@
 
 UdemyのAngular学習コースで習得した内容を整理するためのメモである。
 
-## Angularの特徴
+## Get Started
+
+### Angularの特徴
 
 - クロスプラットフォーム
   - PWA
@@ -21,11 +23,11 @@ UdemyのAngular学習コースで習得した内容を整理するためのメ�
   - オブジェクト指向言語(Java, C#)できる人と親和性が高い
   - TypeScriptはあくまでサポート、JavaScriptできるに越したことない
 
-## 環境構築
+### 環境構築
 
 Windows 10 で作業を行う。事前に[chocolatey](https://chocolatey.org/)をインストールしておく。
 
-### chocolateyでインストール
+#### chocolateyでインストール
 
 ```bash
 ## 開発環境と必要ツールインストール
@@ -35,17 +37,17 @@ choco install nodejs-lts notepadplusplus vscode git -y
 choco uninstall vscode --skip-autouninstaller
 ```
 
-### npmからAngular Cliをインストール
+#### npmからAngular Cliをインストール
 
 ```bash
 npm i -g @angular/cli
 ```
 
-### vscodeの拡張機能をインストール
+#### vscodeの拡張機能をインストール
 
 - Angular Extension Pack
 
-## 初級
+## Basic
 
 ### プロジェクト作成
 
@@ -130,7 +132,7 @@ ng build
 ng build --prod
 ```
 
-[Angularのバージョンアップ](https://update.angular.io/)
+[Angularのバージョンアップサイト](https://update.angular.io/)
 
 ```bash
 ## local angular
@@ -231,4 +233,62 @@ npm i -g @angular/cli
   export class AppComponent {
     item;
   }
+  ```
+
+### Template Reference variables
+
+HTMLの任意のタグで`#name`をつけることでタグ配下の要素を取得できたり、
+Component配下のObjectをアクセスできる。
+
+- html
+
+  ```html
+  <app-header #tHeader></app-header>
+
+  <p (click)="#tHeader.title = 'Title Changed'">Click Me</p>
+  ```
+
+## Directives
+
+### Component Directives
+
+Componetごとのcssは独立しており、タグでスタイルを定義しても他のComponentのスタイルに影響はない。やろうと思えば、以下のやり方でスタイル全体適用は可能。
+
+- ts
+
+  ```ts
+  @Component({
+    styleUrls : ['./footer.component.css'],
+    encapsulation : ViewEncapsulation.None
+  })
+  ```
+
+### Attribute Directives
+
+#### ngClass
+
+動的にスタイルを変更させる。
+`[ngClass]="bool値"`
+
+- html
+  
+  ```html
+  <h3 [ngClass]="{'highlight' : counter %2 ==0}">Hello</h3>
+  <h3 [class.highlight]="{counter %2 ==0}">Hello</h3>
+  ```
+
+#### NgIf
+
+動的にタグの存続状態を変化させる
+`*ngIf="bool値"`
+
+- html
+  
+  ```html
+  <div *ngIf="counter %2 ==0">
+    <!-- ここ配下全部消える-->
+    <h1>H1</h1>
+    <h1>H1</h1>
+    <h1>H1</h1>
+  </div>
   ```
