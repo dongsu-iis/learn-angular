@@ -4,6 +4,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleHeaderComponent } from './article-header/article-header.component';
 import { ArticleBodyComponent } from './article-body/article-body.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 
 
@@ -13,7 +14,8 @@ import { DataService } from './data.service';
   exports: [ArticleListComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [DataService]
 })

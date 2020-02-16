@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ export class DataService {
 
   data: Array<any>;
 
-  constructor() {
+  constructor(private http: HttpClientModule) {
     this.data = [
       {
         "id": 1,
