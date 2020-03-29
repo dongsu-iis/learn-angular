@@ -292,3 +292,36 @@ Componetごとのcssは独立しており、タグでスタイルを定義して
     <h1>H1</h1>
   </div>
   ```
+
+#### NgSwitch
+
+動的にタグをCase文で制御する
+`[ngSwitch] = {条件}`
+`ngSwitchCase={ケース}`
+
+- html
+
+  ```html
+  <ng-container [ngSwith] = "counter % 2">
+    <ng-container *ngSwitchCase="0">Output0</ng-container>
+    <ng-container *ngSwitchCase="1">Output1</ng-container>
+    <ng-container *ngSwitchDefault>N/A</ng-container>
+  </ng-container>
+  ```
+
+`div`じゃなく`ng-container`にした理由は余計なHTMLタグを生成されず、レイアウトを崩さないため
+
+#### NgFor
+
+繰り返し処理
+`*ngFor = ley item of data`
+
+- html
+
+  ```html
+  <article class="post" id="post{{idx}}" *ngFor="let item of data; let idx=index">
+    <app-article-header [item]="item" (delete)="doDelete($event)" (titleChanged)="doModify($event)">
+    </app-article-header>
+    <app-article-body [item]="item" [counter]="counter"></app-article-body>
+  </article>
+  ```
