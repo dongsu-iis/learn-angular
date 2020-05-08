@@ -325,3 +325,213 @@ Componetごとのcssは独立しており、タグでスタイルを定義して
     <app-article-body [item]="item" [counter]="counter"></app-article-body>
   </article>
   ```
+
+## Module
+
+機能ごとModule分割するのがベストプラクティスです。
+
+```bash
+ng g m {module name} -m {}
+```
+
+既存のModuleにfeature Moduleを追加する。
+
+```bash
+ng g m {module name} -m {既存module name}
+```
+
+feature Componentの作り方
+
+```bash
+cd src
+cd app
+cd {feature module folder name}
+ng g c {componet name}
+```
+
+app で使うfeature component は fearter moduleでexportsを入れることを忘れなく
+
+```ts
+@NgModule({
+  exports: [{componet name}],
+})
+```
+
+componentのData受け渡し
+
+### Input
+
+- ts
+
+  ```ts
+  @Input()
+  item;
+  ```
+
+- html
+
+  ```html
+  <app-body [item]="item"></app-body>
+  ```
+
+### Componentのライフサイクル
+
+1. `constructor` : クラスのインスタンス生成時に呼ばれる。基本DI用途しか使わない
+2. `ngOnChanges` : `@Input`のプロパティに変更があった場合に触発する
+3. `ngOnInit` : インスタンス生成後。プロパティの初期値を設定したり、Ajax実行してサーバーからデータ取得し、画面表示させたりする用途。
+4. `ngOnDestroy` : 最後に呼ばれる。オブジェクトの破棄で使う。ほぼ使わない。
+
+### Output
+
+イベントとプロパティを定義
+
+- 子Component
+
+  ```ts
+  // 発火
+  @Output()
+  delete = new EventEmitter<any>();
+
+  deleteArticle() {
+    this.delete.emit(this.item);
+  }
+  ```
+
+  ```html
+  <button (click)="deleteArticle()">Delete</button>
+  ```
+
+- 親Component
+
+  ```ts
+  doDelete(item) {
+    this.data.filter((v)=>{
+      return v !== item;
+    });
+  }
+  ```
+
+  ```html
+  <app-article-header [item]="item" (delete)="doDelete($event)">
+  </app-article-header>
+  ```
+
+### 単一方向データフロー
+
+子Componentでなるべくデータを変更しない思想の設計である。
+
+子Component内で`[(ngModel)]`を使って直接データ変更でき、楽に実装できるが、Component同士の依存性は強くなり将来的にメンテナンスしにくくなる。
+
+- 子Component
+
+  ```ts
+  @Output()
+  titleChanged = new EventEmitter<any>();
+
+  doEdit(title) {
+    this.newTitle = title;
+    this.titleChanged.emit({id : this.item.id, title: title});
+  }
+  ```
+
+  ```html
+  <input type="text" [value]="item.title" (keyup.enter)="doEdit($event.target.value)">
+  ```
+
+- 親Component
+
+  ```ts
+  doModify($event : any) {
+    this.data = this.data.map((item) => {
+        if (item.id == $event.id) {
+          // 新しいObjectを返す
+          return Object.assign({}, item, $event);
+        }
+        return item;
+      });
+  }
+  ```
+
+  ```html
+  <app-article-header [item]="item" (titleChanged)="doModify($event)">
+  </app-article-header>
+  ```
+
+### ngOnChangesライフサイクルHook
+
+`@Input`のプロパティに変更があった場合に触発する。
+
+```ts
+ngOnChanges(changes : any) {
+  if (changes.item) {
+    // 変更前のオブジェクトを保管できる
+    this.orig_item = changes.item.currentValue;
+    // 新しいオブジェクト
+    this.item = Object.assign({}, changes.item.currentValue);
+  }
+}
+
+doEdit() {
+  this.titleChanged.emit(this.item);
+}
+```
+
+```html
+<input type="text" [(ngModel)]="item.title" (keyup.enter)="doEdit()">
+```
+
+## Service
+
+コマンドからServiceを生成
+
+```bash
+ng g s {service name}
+```
+
+Module内でServiceを注入する
+
+```ts
+@NgModule({
+  providers: [DataService]
+})
+```
+
+ComponentでDIして利用する
+
+```ts
+datasvc : DataService;
+constructor(datasvc: DataService) {
+  this.datasvc = datasvc;
+}
+
+// こっちのほうがスマート（htmlでserviceを使いたい場合はpublicにすればいい）
+constructor(private datasvc: DataService) {
+}
+```
+
+## Observable async
+
+Observableのsubscribeを省略できる
+
+- Service
+
+  ```ts
+  getData() {
+    return this.http.get('http://localhost:4200/api/articles.json');
+  }
+  ```
+
+- Component
+
+  ```ts
+  // Observableオブジェクトは後ろに$をつけるのが一般的
+  data$ : Observable<any>;
+
+  ngOnInit() {
+    this.data$ = this.datasvc.getData();
+  }
+  ```
+
+  ```html
+  <div *ngFor="let item of data$|async;"></div>
+  ```

@@ -25,7 +25,7 @@ export class ArticleHeaderComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(changes) {
+  ngOnChanges(changes: any) {
     if (changes.item) {
       this.orig_item = changes.item.currentValue;
       this.item = Object.assign({}, changes.item.currentValue);
@@ -44,7 +44,7 @@ export class ArticleHeaderComponent implements OnInit, OnDestroy, OnChanges {
     this.isEdit = false;
   }
 
-  doEdit(title) {
+  doEdit() {
     this.titleChanged.emit(this.item);
   }
 

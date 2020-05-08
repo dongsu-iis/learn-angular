@@ -18,10 +18,10 @@ export class ArticleListComponent implements OnInit {
   ngOnInit() {
     this.datasvc.getData().subscribe(result => {
       this.data = result;
-    })
-
+    });
   }
-  doDelete(item) {
+
+  doDelete(item: any) {
     this.datasvc.doDelete(item).subscribe(result => {
       this.data = this.data.filter((v) => {
         return v.id !== item.id;
@@ -35,7 +35,7 @@ export class ArticleListComponent implements OnInit {
   doModify(post: any) {
     this.datasvc.doModify(post).subscribe(result => {
       this.data = this.data.map((item) => {
-        if (item.id == post.id) {
+        if (item.id === post.id) {
           return Object.assign({}, item, post);
         }
         return item;
